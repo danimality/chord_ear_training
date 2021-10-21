@@ -1,0 +1,24 @@
+li {
+  min-width: 20px;
+  border: 1px solid gray;
+  padding: 1%;
+}
+
+ul {
+  display: flex;
+  list-style-type: none;
+  width:100%;
+  justify-content: stretch; 
+
+}
+
+li.white {
+  background: white;
+  color: black;
+}
+
+li.black {
+  background: black;
+  color: white;
+  justify-self: flex-start;
+}
