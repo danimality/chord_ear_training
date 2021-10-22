@@ -21,8 +21,11 @@ export const chordPatterns = [
   { name: "min6", pattern: [0, 3, 7, 9] },
   { name: "lyd6", pattern: [0, 4, 6, 9] },
   { name: "lydmaj7", pattern: [0, 4, 6, 11] },
+  { name: "quart1", pattern: [0, 5, 10] },
+  { name: "quart2", pattern: [0, 5, 11] },
 
   { name: "maj9", pattern: [0, 4, 7, 11, 14] },
+  { name: "maj69", pattern: [0, 4, 7, 9, 14] },
   { name: "min9", pattern: [0, 3, 7, 10, 14] },
   { name: "dom9", pattern: [0, 4, 7, 10, 14] },
   { name: "minmaj9", pattern: [0, 3, 7, 11, 14] },

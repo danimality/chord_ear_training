@@ -13,7 +13,7 @@ ul.note-list {
 
 ul.chord-list {
   height: 50%;
-  width: 100%;
+  width: 80%;
   list-style-type: none;
   display: flex;
   flex-direction: row;
@@ -25,7 +25,7 @@ ul.chord-list {
 }
 
 .chord-list li button {
-  width: 100px;
+  width: 75px;
 }
 
 li.white {
