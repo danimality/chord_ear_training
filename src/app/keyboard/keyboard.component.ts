@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import * as Tone from "tone";
 import { notes, toChord } from "../db/notes";
 import { chordPatterns } from "../db/chords";
+import { PlayerService } from "../player.service";
 
 export type Note = {
   name: string;
@@ -13,37 +14,56 @@ export type Note = {
   styleUrls: ["./keyboard.component.css"]
 })
 export class KeyboardComponent implements OnInit {
+  constructor(private player: PlayerService) {}
+
   baseOctave = 3;
 
-  synth = new Tone.PolySynth(Tone.Synth).toDestination();
+  synth = this.player.synth;
 
   chords = chordPatterns;
   selectedNote: Note = { name: "C4" };
+  selectedChord = chordPatterns[0];
+  selectedOctave = 4;
 
   keyboardNotes: Note[];
 
   ngOnInit() {
     // this.synth.triggerAttackRelease("C4", "8n");
-    this.keyboardNotes = notes.map((note) => {
-      console.log(note);
-      return { name: note + this.baseOctave };
-    });
-    this.keyboardNotes.push({ name: "C" + (this.baseOctave + 1) });
+    this.makeNotes();
     // this.synth.triggerAttackRelease(toChord('C#4','lyd'), "4n")
   }
 
   play(note) {
-    this.synth.triggerAttackRelease(note.name, "4n");
+    this.player.play(note);
     this.selectedNote = note;
   }
   playChord(chord) {
-    this.synth.triggerAttackRelease(
-      toChord(this.selectedNote.name, chord.name),
-      "4n"
-    );
+    this.selectedChord = chord;
+    this.player.playChord(chord);
+  }
+
+  makeNotes() {
+    this.keyboardNotes = notes.map((note) => ({
+      name: note + this.selectedOctave
+    }));
+    this.keyboardNotes.push({ name: "C" + (this.selectedOctave + 1) });
   }
 
   isBlack(note: Note): boolean {
     return note.name.indexOf("#") > -1;
+  }
+
+  increaseOctave() {
+    if (this.selectedOctave < 5) {
+      this.selectedOctave += 1;
+    }
+    this.makeNotes();
+  }
+
+  decreaseOctave() {
+    if (this.selectedOctave > 0) {
+      this.selectedOctave -= 1;
+    }
+    this.makeNotes();
   }
 }

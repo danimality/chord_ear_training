@@ -1,21 +1,30 @@
-<div>
-  <ul class="note-list">
-    <li
-      *ngFor="let note of keyboardNotes"
-      (click)="play(note)"
-      [ngClass]="{'black': isBlack(note), 'selected': note.name===selectedNote.name}"
-    >
-      {{note.name}}
-    </li>
-  </ul>
-  <div>Selected Note: {{selectedNote.name}}</div>
-</div>
-<div>
-  <ul class="chord-list">
-    <li *ngFor="let chord of chords">
-      <button (click)="playChord(chord)">
-        {{chord.name}}
-      </button>
-    </li>
-  </ul>
-</div>
+<section>
+  <div>
+    <ul class="note-list">
+      <li
+        *ngFor="let note of keyboardNotes"
+        (click)="play(note)"
+        [ngClass]="{'black': isBlack(note), 'selected': note.name===selectedNote.name}"
+      >
+        {{note.name}}
+      </li>
+    </ul>
+    <div>Selected Note: {{selectedNote.name}}</div>
+    <div>Selected Chord: {{selectedChord.name}}</div>
+    <div>
+      Octave:
+      <button (click)="decreaseOctave()">-</button>
+      {{selectedOctave}}
+      <button (click)="increaseOctave()">+</button>
+    </div>
+  </div>
+  <div>
+    <ul class="chord-list">
+      <li *ngFor="let chord of chords">
+        <button (click)="playChord(chord)">
+          {{chord.name}}
+        </button>
+      </li>
+    </ul>
+  </div>
+</section>
