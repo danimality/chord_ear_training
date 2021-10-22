@@ -1,15 +1,31 @@
-li {
+.note-list li {
   min-width: 20px;
   border: 1px solid gray;
   padding: 1%;
 }
 
-ul {
+ul.note-list {
   display: flex;
   list-style-type: none;
-  width:100%;
-  justify-content: stretch; 
+  width: 100%;
+  justify-content: stretch;
+}
 
+ul.chord-list {
+  height: 50%;
+  width: 100%;
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.chord-list li {
+  flex: 1 1;
+}
+
+.chord-list li button {
+  width: 100px;
 }
 
 li.white {
